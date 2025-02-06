@@ -5,6 +5,194 @@ local playerGui = game:GetService("CoreGui")
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = playerGui
 
+-- Menü çerçevesi
+local menuFrame = Instance.new("Frame")
+menuFrame.Size = UDim2.new(0, 150, 0, 100)  -- Menü boyutunu küçülttük
+menuFrame.Position = UDim2.new(0, 170, 0, 10)  -- Key panelinin sağında
+menuFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+menuFrame.BackgroundTransparency = 0.5
+menuFrame.Visible = false  -- Başlangıçta görünmesin
+menuFrame.Parent = screenGui
+
+-- Menü içeriği
+local menuLabel = Instance.new("TextLabel")
+menuLabel.Size = UDim2.new(1, 0, 1, 0)
+menuLabel.Text = "Menü Açıldı!"
+menuLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+menuLabel.BackgroundTransparency = 1
+menuLabel.TextScaled = true
+menuLabel.Parent = menuFrame
+
+-- "Psychic" butonunu ekleyelim
+local psychicButton = Instance.new("TextButton")
+psychicButton.Size = UDim2.new(0, 120, 0, 30)  -- Küçük buton boyutu
+psychicButton.Position = UDim2.new(0.5, -60, 0.2, 0)  -- Konumu biraz yukarıda
+psychicButton.Text = "Psychic"
+psychicButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+psychicButton.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+psychicButton.TextScaled = true
+psychicButton.Parent = menuFrame
+
+-- "Body" butonunu ekleyelim
+local bodyButton = Instance.new("TextButton")
+bodyButton.Size = UDim2.new(0, 120, 0, 30)  -- Küçük buton boyutu
+bodyButton.Position = UDim2.new(0.5, -60, 0.6, 0)  -- Konumu biraz aşağıda
+bodyButton.Text = "Body"
+bodyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+bodyButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+bodyButton.TextScaled = true
+bodyButton.Parent = menuFrame
+
+-- Key doğrulama paneli
+local keyFrame = Instance.new("Frame")
+keyFrame.Size = UDim2.new(0, 150, 0, 100)  -- Boyutunu küçülttük
+keyFrame.Position = UDim2.new(0, 10, 0, 10)  -- Sol üst köşeye yerleştiriyoruz
+keyFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+keyFrame.BackgroundTransparency = 0.5
+keyFrame.Visible = true  -- Başlangıçta görünür olmalı
+keyFrame.Parent = screenGui
+
+-- Key için TextBox ekleyelim
+local keyInput = Instance.new("TextBox")
+keyInput.Size = UDim2.new(0, 120, 0, 30)  -- Boyutunu küçültüyoruz
+keyInput.Position = UDim2.new(0.5, -60, 0.3, 0)  -- Küçük alanda ortalayalım
+keyInput.PlaceholderText = "Keyinizi Girin"
+keyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+keyInput.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+keyInput.TextScaled = true
+keyInput.Parent = keyFrame
+
+-- Key doğrulama butonu
+local validateButton = Instance.new("TextButton")
+validateButton.Size = UDim2.new(0, 120, 0, 30)  -- Boyutunu küçültüyoruz
+validateButton.Position = UDim2.new(0.5, -60, 0.6, 0)  -- Küçük alanda ortalayalım
+validateButton.Text = "Doğrula"
+validateButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+validateButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+validateButton.TextScaled = true
+validateButton.Parent = keyFrame
+
+-- Key kontrolü
+local validKey = "SECRETKEY"  -- Buraya belirleyeceğiniz keyi girin
+
+validateButton.MouseButton1Click:Connect(function()
+    local enteredKey = keyInput.Text:upper()  -- Keyi büyük harfe dönüştür
+    if enteredKey == validKey then  -- Key doğruysa
+        keyFrame.Visible = false  -- Key doğrulandıysa key panelini gizle
+        menuFrame.Visible = true  -- Menü görünür hale gelsin
+    else  -- Key yanlışsa
+        keyInput.Text = ""  -- Yanlış key girildiğinde TextBox'ı temizle
+        keyInput.PlaceholderText = "Yanlış Key! Tekrar deneyin."  -- Hata mesajı
+    end
+end)
+
+-- Psychic butonuna tıklanıldığında verilen scripti çalıştır
+psychicButton.MouseButton1Click:Connect(function()
+    _G.cum = true
+    local args = {
+        [1] = {
+            [1] = "Psychic", 
+            [2] = "Psychic3" 
+        }
+    }
+
+    game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+
+    while _G.cum do
+        local args = {
+            [1] = {
+                [1] = "+PP20" 
+            }
+        }
+
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        wait(0.0001)
+        local args = {
+            [1] = {
+                [1] = ""
+            }
+        }
+
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        task.wait()
+    end
+
+    if _G.cum == false then
+        local args = {
+            [1] = {
+                [1] = "",
+                [2] = ""
+            }
+        }
+
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+    end
+end)
+
+-- Body butonuna tıklanıldığında verilen scripti çalıştır
+bodyButton.MouseButton1Click:Connect(function()
+    _G.cum = true
+    local args = {
+        [1] = {
+            [1] = "Body", 
+            [2] = "Body2" 
+        }
+    }
+
+    game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+
+    while _G.cum do
+        local args = {
+            [1] = {
+                [1] = "+BT29" 
+            }
+        }
+
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        wait(0.0001)
+        local args = {
+            [1] = {
+                [1] = ""
+            }
+        }
+
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        task.wait()
+    end
+
+    if _G.cum == false then
+        local args = {
+            [1] = {
+                [1] = "",
+                [2] = ""
+            }
+        }
+
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+    end
+end)
+
+-- Karakter öldüğünde menünün kaybolmasını engelle
+local function onCharacterAdded(character)
+    task.wait(1)
+    screenGui.Parent = game:GetService("CoreGui") -- CoreGui içine tekrar ekliyoruz
+end
+
+player.CharacterAdded:Connect(onCharacterAdded)
+
+-- Eğer oyuncunun karakteri varsa, hemen çalıştır
+if player.Character then
+    onCharacterAdded(player.Character)
+end
+
+
+local player = game.Players.LocalPlayer
+local playerGui = game:GetService("CoreGui")
+
+-- GUI'yi oluştur
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
+
 -- Menü çerçevesi (daha küçük ve şeffaf)
 local menuFrame = Instance.new("Frame")
 menuFrame.Size = UDim2.new(0, 300, 0, 400)  -- Menüyü küçültük
@@ -273,7 +461,7 @@ end)
 
 -- NOLAG scriptini çalıştıran fonksiyon
 local function activateNOLAG()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/massthix/refs/heads/main/massthix2", true))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/fdgbwerh/refs/heads/main/asdasdasd", true))()
 end
 
 -- NOLAG butonuna tıklanınca NOLAG scriptini çalıştır
