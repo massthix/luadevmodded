@@ -1,0 +1,282 @@
+local player = game.Players.LocalPlayer
+local playerGui = game:GetService("CoreGui")
+
+-- GUI'yi oluştur
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
+
+-- Menü çerçevesi (daha küçük ve şeffaf)
+local menuFrame = Instance.new("Frame")
+menuFrame.Size = UDim2.new(0, 300, 0, 400)  -- Menüyü küçültük
+menuFrame.Position = UDim2.new(0.5, -150, 0.5, -200)  -- Merkeze yerleştirdik
+menuFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+menuFrame.BackgroundTransparency = 0.5  -- Şeffaf yapalım
+menuFrame.Visible = false
+menuFrame.Parent = screenGui
+
+-- Fist butonunu ekleyelim
+local fistButton = Instance.new("TextButton")
+fistButton.Size = UDim2.new(0, 200, 0, 40)
+fistButton.Position = UDim2.new(0.5, -100, 0.05, 0)  -- Üst kısma yerleştirdik
+fistButton.Text = "Fist Aktif"
+fistButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+fistButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)  -- Kırmızı yaptık
+fistButton.TextScaled = true
+fistButton.Parent = menuFrame
+
+-- Anti AFK butonunu ekleyelim
+local antiAfkButton = Instance.new("TextButton")
+antiAfkButton.Size = UDim2.new(0, 200, 0, 40)
+antiAfkButton.Position = UDim2.new(0.5, -100, 0.15, 0)  -- Yeri biraz aşağıya aldık
+antiAfkButton.Text = "Anti AFK"
+antiAfkButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+antiAfkButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)  -- Kırmızı yaptık
+antiAfkButton.TextScaled = true
+antiAfkButton.Parent = menuFrame
+
+-- Autodeathrun butonunu ekleyelim
+local autodeathrunButton = Instance.new("TextButton")
+autodeathrunButton.Size = UDim2.new(0, 200, 0, 40)
+autodeathrunButton.Position = UDim2.new(0.5, -100, 0.25, 0)  -- Alt kısma yerleştirdik
+autodeathrunButton.Text = "Autodeathrun"
+autodeathrunButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+autodeathrunButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)  -- Kırmızı yaptık
+autodeathrunButton.TextScaled = true
+autodeathrunButton.Parent = menuFrame
+
+-- StackX butonunu ekleyelim
+local stackXButton = Instance.new("TextButton")
+stackXButton.Size = UDim2.new(0, 200, 0, 40)
+stackXButton.Position = UDim2.new(0.5, -100, 0.35, 0)  -- Biraz aşağıya yerleştirdik
+stackXButton.Text = "StackX"
+stackXButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+stackXButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)  -- Kırmızı yaptık
+stackXButton.TextScaled = true
+stackXButton.Parent = menuFrame
+
+-- JFMS butonunu ekleyelim
+local jfmsButton = Instance.new("TextButton")
+jfmsButton.Size = UDim2.new(0, 200, 0, 40)
+jfmsButton.Position = UDim2.new(0.5, -100, 0.45, 0)  -- Biraz daha aşağıya yerleştirdik
+jfmsButton.Text = "JFMS"
+jfmsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+jfmsButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)  -- Kırmızı yaptık
+jfmsButton.TextScaled = true
+jfmsButton.Parent = menuFrame
+
+-- NOLAG butonunu ekleyelim
+local nolagButton = Instance.new("TextButton")
+nolagButton.Size = UDim2.new(0, 200, 0, 40)
+nolagButton.Position = UDim2.new(0.5, -100, 0.55, 0)  -- En altta
+nolagButton.Text = "NOLAG"
+nolagButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+nolagButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)  -- Kırmızı yaptık
+nolagButton.TextScaled = true
+nolagButton.Parent = menuFrame
+
+-- Info butonunu ekleyelim
+local infoButton = Instance.new("TextButton")
+infoButton.Size = UDim2.new(0, 200, 0, 40)
+infoButton.Position = UDim2.new(0.5, -100, 0.65, 0)  -- Alt kısma yerleştirdik
+infoButton.Text = "Info"
+infoButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+infoButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)  -- Kırmızı yaptık
+infoButton.TextScaled = true
+infoButton.Parent = menuFrame
+
+-- Menü açma/kapama butonunu üst kısmına ekleyelim
+local toggleButton = Instance.new("TextButton")
+toggleButton.Size = UDim2.new(0, 200, 0, 40)
+toggleButton.Position = UDim2.new(0.5, -100, 0.01, 0)  -- Üst kısmına yerleştirdik
+toggleButton.Text = "Menüyü Aç"
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)  -- Kırmızı yaptık
+toggleButton.TextScaled = true
+toggleButton.Parent = screenGui
+
+-- Info menüsü için ayrı bir çerçeve
+local infoFrame = Instance.new("Frame")
+infoFrame.Size = UDim2.new(0, 200, 0, 200)  -- Ufak bir panel
+infoFrame.Position = UDim2.new(0.5, -250, 0.5, -150)  -- Menüye göre konumlandırdık
+infoFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+infoFrame.BackgroundTransparency = 0.5
+infoFrame.Visible = false
+infoFrame.Parent = screenGui
+
+-- Info içeriği (TextLabel) ekleyelim
+local infoText = Instance.new("TextLabel")
+infoText.Size = UDim2.new(0, 200, 0, 40)
+infoText.Position = UDim2.new(0.5, -100, 0.1, 0)
+infoText.Text = "Beta 1.01\nNoLag Fix\nMenu Update\nCreated By Massthix."
+infoText.TextColor3 = Color3.fromRGB(255, 255, 255)
+infoText.BackgroundTransparency = 1  -- Şeffaf
+infoText.TextScaled = true
+infoText.Parent = infoFrame
+
+-- Menü açma/kapama işlevi
+toggleButton.MouseButton1Click:Connect(function()
+    menuFrame.Visible = not menuFrame.Visible
+    if menuFrame.Visible then
+        toggleButton.Text = "Menüyü Kapat"
+    else
+        toggleButton.Text = "Menüyü Aç"
+    end
+end)
+
+-- Karakter öldüğünde menünün kaybolmasını engelle
+local function onCharacterAdded(character)
+    task.wait(1) -- Karakter tam yüklensin diye biraz bekletiyoruz
+    screenGui.Parent = game:GetService("CoreGui") -- Tekrar CoreGui içine ekliyoruz
+end
+
+player.CharacterAdded:Connect(onCharacterAdded)
+
+-- Eğer oyuncunun karakteri varsa, hemen çalıştır
+if player.Character then
+    onCharacterAdded(player.Character)
+end
+
+
+-- Info butonuna tıklanınca Info menüsünü göster
+infoButton.MouseButton1Click:Connect(function()
+    infoFrame.Visible = not infoFrame.Visible
+end)
+
+-- Fist scriptini çalıştıran fonksiyon
+local function activateFist()
+    _G.cum = true
+    local args = {
+        [1] = {
+            [1] = "Fist",
+            [2] = "Fist1"
+        }
+    }
+    game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+
+    while _G.cum do
+        local args = {
+            [1] = {
+                [1] = "+FS21"
+            }
+        }
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        wait(0.0001)
+        local args = {
+            [1] = {
+                [1] = ""
+            }
+        }
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        task.wait()
+    end
+
+    if _G.cum == false then
+        local args = {
+            [1] = {
+                [1] = "",
+                [2] = ""
+            }
+        }
+        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+    end
+end
+
+-- Fist butonuna tıklanınca fist scriptini çalıştır
+fistButton.MouseButton1Click:Connect(function()
+    activateFist()
+end)
+
+-- Anti AFK scriptini çalıştıran fonksiyon
+local function activateAntiAfk()
+    wait(0.5)
+    local ba = Instance.new("ScreenGui")
+    local ca = Instance.new("TextLabel")
+    local da = Instance.new("Frame")
+    local _b = Instance.new("TextLabel")
+    local ab = Instance.new("TextLabel")
+    ba.Parent = game.CoreGui
+    ba.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    ca.Parent = ba
+    ca.Active = true
+    ca.BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471)
+    ca.Draggable = true
+    ca.Position = UDim2.new(0.698610067, 0, 0.098096624, 0)
+    ca.Size = UDim2.new(0, 370, 0, 52)
+    ca.Font = Enum.Font.SourceSansSemibold
+    ca.Text = "Anti AFK Script"
+    ca.TextColor3 = Color3.new(0, 1, 1)
+    ca.TextSize = 22
+    da.Parent = ca
+    da.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+    da.Position = UDim2.new(0, 0, 1.0192306, 0)
+    da.Size = UDim2.new(0, 370, 0, 107)
+    _b.Parent = da
+    _b.BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471)
+    _b.Position = UDim2.new(0, 0, 0.800455689, 0)
+    _b.Size = UDim2.new(0, 370, 0, 21)
+    _b.Font = Enum.Font.Arial
+    _b.Text = "Made by Bab#0325"
+    _b.TextColor3 = Color3.new(0, 1, 1)
+    _b.TextSize = 20
+    ab.Parent = da
+    ab.BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471)
+    ab.Position = UDim2.new(0, 0, 0.158377, 0)
+    ab.Size = UDim2.new(0, 370, 0, 44)
+    ab.Font = Enum.Font.ArialBold
+    ab.Text = "Status: Active"
+    ab.TextColor3 = Color3.new(0, 1, 1)
+    ab.TextSize = 20
+    local bb = game:service'VirtualUser'
+    game:service'Players'.LocalPlayer.Idled:connect(function()
+        bb:CaptureController()
+        bb:ClickButton2(Vector2.new())
+        ab.Text = "Roblox Tried to kick you but we didnt let them kick you :D"
+        wait(2)
+        ab.Text = "Status : Active"
+    end)
+end
+
+-- Anti AFK butonuna tıklanınca anti afk scriptini çalıştır
+antiAfkButton.MouseButton1Click:Connect(function()
+    activateAntiAfk()
+end)
+
+-- Autodeathrun scriptini çalıştıran fonksiyon
+local function activateAutodeathrun()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/sinret/rbxscript.com-scripts-reuploads-/main/spts", true))()
+end
+
+-- Autodeathrun butonuna tıklanınca autodeathrun scriptini çalıştır
+autodeathrunButton.MouseButton1Click:Connect(function()
+    activateAutodeathrun()
+end)
+
+-- StackX scriptini çalıştıran fonksiyon
+local function activateStackX()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/massthix/refs/heads/main/massthix", true))()
+end
+
+-- StackX butonuna tıklanınca StackX scriptini çalıştır
+stackXButton.MouseButton1Click:Connect(function()
+    activateStackX()
+end)
+
+-- JFMS scriptini çalıştıran fonksiyon
+local function activateJFMS()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/massthix/refs/heads/main/speed", true))()
+end
+
+-- JFMS butonuna tıklanınca JFMS scriptini çalıştır
+jfmsButton.MouseButton1Click:Connect(function()
+    activateJFMS()
+end)
+
+-- NOLAG scriptini çalıştıran fonksiyon
+local function activateNOLAG()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/massthix/refs/heads/main/massthix2", true))()
+end
+
+-- NOLAG butonuna tıklanınca NOLAG scriptini çalıştır
+nolagButton.MouseButton1Click:Connect(function()
+    activateNOLAG()
+end)
