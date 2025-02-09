@@ -44,6 +44,12 @@ local MainSection = MainTab:CreateSection("Main")
    end,
 })
     local Button = MainTab:CreateButton({
+   Name = "Psychic",
+   Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/luadevmodded/refs/heads/main/PS", true))()
+   end,
+})
+    local Button = MainTab:CreateButton({
    Name = "Body",
    Callback = function()
    loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/asdasdasd/refs/heads/main/ASDASDFEGHWER", true))()
