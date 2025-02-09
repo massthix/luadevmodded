@@ -117,9 +117,6 @@ local Dropdown = MainTab:CreateDropdown({
    Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Options)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/fdgbwerh/refs/heads/main/asdasdasd", true))()
-Dropdown:Set({"Fist1000Td"}) -- The new selected options
-   Callback = function(Options)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/massthix/refs/heads/main/massthix", true))()
    end,
 })
 
