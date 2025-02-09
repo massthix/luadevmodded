@@ -5,7 +5,7 @@ local Window = Rayfield:CreateWindow({
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "LU4DEV Script",
    LoadingSubtitle = "by LU4DEV👑",
-   Theme = "Ocean", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+   Theme = "Bloom", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
    DisableRayfieldPrompts = false,
    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
@@ -30,23 +30,17 @@ local Window = Rayfield:CreateWindow({
       FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Key = {"key"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
 
-local MainTab = Window:CreateTab("👑", 4483362458) -- Title, Image
+local MainTab = Window:CreateTab("👑",) -- Title, Image
 local MainSection = MainTab:CreateSection("Main")
 
     local Button = MainTab:CreateButton({
    Name = "Fist",
    Callback = function()
    loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/asdasdasd/refs/heads/main/ASDASD", true))()
-   end,
-})
-    local Button = MainTab:CreateButton({
-   Name = "Psychic",
-   Callback = function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/luadevmodded/refs/heads/main/PS", true))()
    end,
 })
     local Button = MainTab:CreateButton({
@@ -79,44 +73,21 @@ local MainSection = MainTab:CreateSection("Main")
    loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/fdgbwerh/refs/heads/main/asdasdasd", true))()
    end,
 })
-local Toggle = MainTab:CreateToggle({
-   Name = "TEST",
-   CurrentValue = false,
-   Flag = "TEST", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   -- The function that takes place when the toggle is pressed
-   -- The variable (Value) is a boolean on whether the toggle is true or false
-   end,
-})
-local Slider = MainTab:CreateSlider({
-   Name = "Slider Example",
-   Range = {0, 100},
-   Increment = 10,
-   Suffix = "Bananas",
-   CurrentValue = 10,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   -- The function that takes place when the slider changes
-   -- The variable (Value) is a number which correlates to the value the slider is currently at
-   end,
-})
-local Toggle = MainTab:CreateToggle({
-   Name = "Toggle Example",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Value)
-   -- The function that takes place when the toggle is pressed
-   -- The variable (Value) is a boolean on whether the toggle is true or false
-   end,
-})
 local Dropdown = MainTab:CreateDropdown({
    Name = "Fist",
-   Options = {"Fist100Td","Fist1000Td"},
+   Options = {"Fist100Td", "Fist1000Td"},
    CurrentOption = {"Option 1"},
    MultipleOptions = false,
-   Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "Dropdown1",
    Callback = function(Options)
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/fdgbwerh/refs/heads/main/asdasdasd", true))()
+       -- Seçilen seçeneği al
+       local selectedOption = Options[1] 
+
+       -- Seçeneğe göre işlem yap
+       if selectedOption == "Fist100Td" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/massthix/refs/heads/main/massthix", true))()
+       elseif selectedOption == "Fist1000Td" then
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/sinret/rbxscript.com-scripts-reuploads-/main/spts", true))()
+       end
    end,
 })
-
