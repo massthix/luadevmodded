@@ -52,6 +52,12 @@ local MainSection = MainTab:CreateSection("Main")
     local Button = MainTab:CreateButton({
    Name = "MS/JF",
    Callback = function()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/luadevmodded/refs/heads/main/PS", true))()
+   end,
+})
+    local Button = MainTab:CreateButton({
+   Name = "MS/JF",
+   Callback = function()
    loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/massthix/refs/heads/main/speed", true))()
    end,
 })
