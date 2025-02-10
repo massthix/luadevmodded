@@ -35,8 +35,9 @@ local Window = Rayfield:CreateWindow({
 })
 
 local MainTab = Window:CreateTab("👑", 0 ) -- Title, Image
+local MiscTab = Window:CreateTab("💎​", 0 ) -- Title, Image
 local MainSection = MainTab:CreateSection("Main")
-local MainSection = MiscTab:CreateSection("Misc")
+local MiscSection = MiscTab:CreateSection("Misc")
 
     local Button = MainTab:CreateButton({
    Name = "Fist",
