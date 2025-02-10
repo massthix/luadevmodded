@@ -73,21 +73,14 @@ local MainSection = MainTab:CreateSection("Main")
    loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/fdgbwerh/refs/heads/main/asdasdasd", true))()
    end,
 })
-local Dropdown = MainTab:CreateDropdown({
-   Name = "Fist",
+   local Dropdown = MainTab:CreateDropdown({
+   Name = "Fists",
    Options = {"Fist100Td", "Fist1000Td"},
    CurrentOption = {"Option 1"},
    MultipleOptions = false,
    Flag = "Dropdown1",
    Callback = function(Options)
-       -- Seçilen seçeneği al
-       local selectedOption = Options[1] 
-
-       -- Seçeneğe göre işlem yap
-       if selectedOption == "Fist100Td" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/massthix/massthix/refs/heads/main/massthix", true))()
-       elseif selectedOption == "Fist1000Td" then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/sinret/rbxscript.com-scripts-reuploads-/main/spts", true))()
-       end
    end,
 })
