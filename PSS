@@ -10,7 +10,7 @@ game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 
 while _G.cum do
     -- PP20 için paket göndermeyi 5 kez hızlandırdım
-    for i = 1, 12 do
+    for i = 1, 8 do
         local args = {
             [1] = {
                 [1] = "+PP20"
