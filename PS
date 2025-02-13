@@ -8,50 +8,22 @@ local args = {
 
 game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 
-local delay = 0.1 -- Başlangıç gecikmesi (lag olmaması için)
-local resetDetected = false -- Reset olup olmadığını takip eder
-
--- Reset olduğunda tespit etmek için karakterin değişmesini dinle
-game:GetService("Players").LocalPlayer.CharacterAdded:Connect(function()
-    resetDetected = true
-end)
-
 while _G.cum do
-    -- Reset tespit edildiyse direkt hızlandır
-    if resetDetected then
-        delay = 0 -- Beklemeyi tamamen kaldır!
-        resetDetected = false -- Tekrar sıfırlamak için
-    end
-
-    for i = 1, 8 do -- 5 Kez Gönder
+    -- PP20 için paket göndermeyi 5 kez hızlandırdım
+    for i = 1, 5 do
         local args = {
             [1] = {
-                [1] = "+PS20"
-            }
-        }
-        game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-    end
-    
-    task.wait(delay)
-
-    for i = 1, 8 do -- 5 Kez Gönder
-        local args = {
-            [1] = {
-                [1] = ""
+                [1] = "+PP20"
             }
         }
         game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
     end
 
-    task.wait(delay)
-
-    if delay > 0 then 
-        delay = delay * 0.9 -- Zamanla hızlan
-        if delay < 0.01 then delay = 0 end -- Min bekleme
-    end
+    task.wait(0) -- Hız için bekleme yok
 end
 
 if _G.cum == false then
+    -- Gereksiz kod kaldırıldı
     local args = {
         [1] = {
             [1] = "",
